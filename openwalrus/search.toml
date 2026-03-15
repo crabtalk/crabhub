@@ -1,0 +1,9 @@
+[package]
+name = "search"
+
+[services.search]
+description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
+kind = "hook"
+command = "walrus-search"
+install = { command = "cargo", args = ["install", "walrus-search"] }
+restart = "on_failure"

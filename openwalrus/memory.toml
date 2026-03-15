@@ -1,0 +1,9 @@
+[package]
+name = "memory"
+
+[services.memory]
+description = "Graph memory with entity and relation tracking"
+kind = "hook"
+command = "walrus-memory"
+install = { command = "cargo", args = ["install", "walrus-memory"] }
+restart = "on_failure"
