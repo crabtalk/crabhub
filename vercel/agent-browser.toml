@@ -1,0 +1,7 @@
+[package]
+name = "agent-browser"
+
+[skills.agent-browser]
+description = "Browser automation CLI for AI agents. Navigate pages, fill forms, click buttons, take screenshots, extract data, and automate any browser task."
+repo = "https://github.com/vercel-labs/agent-browser"
+path = "skills/agent-browser"
