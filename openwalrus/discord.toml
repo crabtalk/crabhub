@@ -8,7 +8,6 @@ keywords = ["discord", "bot", "gateway", "chat"]
 [services.discord]
 description = "Discord bot gateway for agents"
 kind = "gateway"
-command = "walrus-discord"
-install = { command = "bash", args = ["-c", "curl -fsSL openwalrus.xyz/install | sh -s -- --yes --service discord"] }
+crate = "walrus-discord"
 restart = "on_failure"
 config = { discord = { token = "" } }
