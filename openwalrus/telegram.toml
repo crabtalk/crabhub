@@ -7,7 +7,7 @@ keywords = ["telegram", "bot", "gateway", "chat"]
 
 [services.telegram]
 description = "Telegram bot gateway for agents"
-kind = "client"
+kind = "gateway"
 command = "walrus-telegram"
 install = { command = "bash", args = ["-c", "curl -fsSL openwalrus.xyz/install | sh -s -- --yes --service telegram"] }
 restart = "on_failure"

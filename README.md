@@ -35,7 +35,7 @@ path = "skills/my-skill"
 
 [services.my-service]
 description = "A managed WHS service"
-kind = "hook"                           # hook | client | process
+kind = "hook"                           # hook | gateway | process
 command = "my-service"                  # binary name or path
 install = { command = "cargo", args = ["install", "my-service"] }
 restart = "on_failure"                  # never | on_failure | always
@@ -56,7 +56,7 @@ Services are external processes managed by the walrus daemon. The `install` fiel
 | Field | Required | Description |
 |-------|----------|-------------|
 | `description` | yes | Human-readable description |
-| `kind` | no | `hook` (default), `client`, or `process` |
+| `kind` | no | `hook` (default), `gateway`, or `process` |
 | `command` | yes | Binary name or path to execute |
 | `install` | no | `{ command, args }` — install command run during hub install |
 | `restart` | no | `never` (default), `on_failure`, or `always` |
