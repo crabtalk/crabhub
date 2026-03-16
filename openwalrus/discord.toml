@@ -1,5 +1,9 @@
 [package]
 name = "discord"
+description = "Discord bot gateway for agents"
+logo = "https://openwalrus.xyz/logos/discord.png"
+repository = "https://github.com/aspect-build/walrus"
+keywords = ["discord", "bot", "gateway", "chat"]
 
 [services.discord]
 description = "Discord bot gateway for agents"

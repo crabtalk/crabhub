@@ -21,6 +21,7 @@ my-org/my-tool.toml
 ```toml
 [package]
 name = "my-package"
+repository = "https://github.com/my-org/my-package"
 
 [mcp_servers.my-mcp]
 description = "My MCP server"
@@ -30,7 +31,6 @@ keywords = ["mcp"]
 
 [skills.my-skill]
 description = "A downloadable skill."
-repo = "https://github.com/my-org/my-skill"
 path = "skills/my-skill"
 
 [services.my-service]
