@@ -1,0 +1,13 @@
+[package]
+name = "telegram"
+description = "Telegram bot gateway for agents"
+logo = "https://openwalrus.xyz/logos/telegram.png"
+repository = "https://github.com/aspect-build/walrus"
+keywords = ["telegram", "bot", "gateway", "chat"]
+
+[services.telegram]
+description = "Telegram bot gateway for agents"
+kind = "gateway"
+crate = "walrus-telegram"
+restart = "on_failure"
+config = { telegram = { token = "" } }

@@ -1,13 +1,14 @@
 [package]
 name = "playwright"
+description = "Browser automation with Playwright MCP server and CLI tools"
+logo = "https://openwalrus.xyz/logos/playwright.png"
+repository = "https://github.com/microsoft/playwright-cli"
+keywords = ["playwright", "browser", "automation", "mcp"]
 
 [mcp_servers.playwright]
-description = "Playwright MCP server"
 command = "npx"
 args = ["-y", "@playwright/mcp"]
-keywords = ["playwright", "mcp"]
 
 [skills.playwright-cli]
 description = "CLI for common Playwright actions. Record and generate Playwright code, inspect selectors and take screenshots."
-repo = "https://github.com/microsoft/playwright-cli"
 path = "skills/playwright-cli"

@@ -1,0 +1,11 @@
+[package]
+name = "notion"
+description = "Notion MCP server for pages, databases, and blocks"
+logo = "https://openwalrus.xyz/logos/notion.png"
+repository = "https://github.com/notionhq/notion-mcp-server"
+keywords = ["notion", "mcp", "docs", "database", "wiki"]
+
+[mcp_servers.notion]
+command = "npx"
+args = ["-y", "@notionhq/notion-mcp-server"]
+env = { NOTION_TOKEN = "" }

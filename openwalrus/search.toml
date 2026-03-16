@@ -1,0 +1,12 @@
+[package]
+name = "search"
+description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
+logo = "https://openwalrus.xyz/logos/search.png"
+repository = "https://github.com/aspect-build/walrus"
+keywords = ["search", "web", "duckduckgo", "wikipedia"]
+
+[services.search]
+description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
+kind = "extension"
+crate = "walrus-search"
+restart = "on_failure"
