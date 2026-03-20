@@ -16,37 +16,106 @@ my-org/my-tool.toml
 
 `scope` is typically the author, organization, or tool namespace. One `.toml` file can declare multiple related resources under the same scope.
 
-### config.toml structure
+### Manifest Structure
+
+Every manifest starts with a `[package]` section, followed by one or more resource sections.
 
 ```toml
 [package]
 name = "my-package"
+description = "Short description for hub display"
+logo = "https://example.com/logo.png"
 repository = "https://github.com/my-org/my-package"
+keywords = ["tag1", "tag2"]
+```
 
-[mcps.my-mcp]
+| Field | Required | Description |
+|---|---|---|
+| `name` | yes | Package name |
+| `description` | no | Short description for hub display |
+| `logo` | no | Logo URL for hub display |
+| `repository` | no | Source repository URL (required for skills) |
+| `keywords` | no | Searchable tags for hub discovery |
+
+### Resource Sections
+
+#### `[mcps.*]` — MCP Servers
+
+Registers an MCP server. Merged into the user's `crab.toml` on install.
+
+```toml
+[mcps.notion]
 command = "npx"
-args = ["-y", "@my-org/mcp"]
+args = ["-y", "@notionhq/notion-mcp-server"]
+env = { NOTION_TOKEN = "" }
+```
 
-[skills.my-skill]
-description = "A downloadable skill."
-path = "skills/my-skill"
+| Field | Required | Default | Description |
+|---|---|---|---|
+| `command` | yes* | — | Executable to spawn (stdio transport) |
+| `args` | no | `[]` | Command-line arguments |
+| `env` | no | `{}` | Environment variables |
+| `name` | no | map key | Display name |
+| `auto_restart` | no | `true` | Auto-restart on failure |
+| `url` | no | — | HTTP URL for streamable HTTP transport (replaces stdio) |
 
+*Either `command` or `url` should be set.
+
+#### `[skills.*]` — Skills
+
+Downloadable skill directories, copied from `package.repository` to `~/.crabtalk/skills/<key>/` on install.
+
+```toml
+[skills.playwright-cli]
+description = "CLI for common Playwright actions."
+path = "skills/playwright-cli"
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `description` | yes | Skill description |
+| `path` | yes | Path within the source repo to the skill directory |
+| `name` | no | Display name (defaults to map key) |
+
+#### `[agents.*]` — Agents
+
+System prompt bundles that can declare skill dependencies. Prompt files are copied to `~/.crabtalk/agents/<key>.md` on install.
+
+```toml
 [agents.my-agent]
 description = "An agent with a bundled prompt."
 prompt = "prompts/my-agent.md"
-skills = ["my-skill"]
-
-[commands.my-command]
-description = "A locally-installed command service."
-binary = "my-binary"
-subcommand = "serve"
+skills = ["playwright-cli"]
 ```
 
-Supported sections: `mcps`, `skills`, `agents`, `commands`.
+| Field | Required | Description |
+|---|---|---|
+| `description` | yes | Agent description |
+| `prompt` | yes | Path to prompt `.md` file (relative to scope dir) |
+| `skills` | no | Skill keys from the same manifest to auto-install |
+
+#### `[commands.*]` — Commands
+
+Metadata for locally-installed command binaries. Hub registers them in `crab.toml` but does not download or manage the binary itself.
+
+```toml
+[commands.search]
+description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
+binary = "crabtalk-search"
+subcommand = "mcp"
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `description` | yes | Human-readable description |
+| `binary` | yes | Executable name (resolved via PATH) or absolute path |
+| `subcommand` | yes | Clap subcommand for service management |
+
+Installed commands are managed via `crabtalk <command> start|stop|run|logs`.
 
 ## Examples
 
-- [microsoft/playwright.toml](microsoft/playwright.toml) — MCP server and CLI skill for browser automation with Playwright.
+- [microsoft/playwright.toml](microsoft/playwright.toml) — MCP server and CLI skill for browser automation.
 - [notion/notion.toml](notion/notion.toml) — Notion MCP server for pages, databases, and blocks.
 - [vercel/agent-browser.toml](vercel/agent-browser.toml) — Browser automation CLI for AI agents.
 - [crabtalk/search.toml](crabtalk/search.toml) — Meta-search aggregator command.
