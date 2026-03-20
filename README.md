@@ -1,6 +1,6 @@
-# Walrus Hub
+# Crabtalk Hub
 
-A community registry for AI agent resources — MCP servers, skills, services, agents, prompts, and tools.
+A community registry for AI agent resources — MCP servers, skills, agents, and commands.
 
 Resources are indexed as `scope/config.toml` files in this repository. Anyone can add resources by opening a PR.
 
@@ -10,7 +10,7 @@ Each resource lives at `<scope>/<config>.toml`:
 
 ```
 microsoft/playwright.toml
-openwalrus/memory.toml
+notion/notion.toml
 my-org/my-tool.toml
 ```
 
@@ -23,52 +23,34 @@ my-org/my-tool.toml
 name = "my-package"
 repository = "https://github.com/my-org/my-package"
 
-[mcp_servers.my-mcp]
-description = "My MCP server"
+[mcps.my-mcp]
 command = "npx"
 args = ["-y", "@my-org/mcp"]
-keywords = ["mcp"]
 
 [skills.my-skill]
 description = "A downloadable skill."
 path = "skills/my-skill"
 
-[services.my-service]
-description = "A managed WHS service"
-kind = "hook"                           # hook | gateway | process
-command = "my-service"                  # binary name or path
-install = { command = "cargo", args = ["install", "my-service"] }
-restart = "on_failure"                  # never | on_failure | always
-config = {}                             # opaque JSON forwarded to the service
-
 [agents.my-agent]
 description = "An agent with a bundled prompt."
 prompt = "prompts/my-agent.md"
 skills = ["my-skill"]
+
+[commands.my-command]
+description = "A locally-installed command service."
+binary = "my-binary"
+subcommand = "serve"
 ```
 
-Supported sections: `mcp_servers`, `skills`, `services`, `agents`.
-
-### Services
-
-Services are external processes managed by the walrus daemon. The `install` field specifies how to install the service binary — it is executed during `walrus hub install` and not written to `walrus.toml`.
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `description` | yes | Human-readable description |
-| `kind` | no | `hook` (default), `gateway`, or `process` |
-| `command` | yes | Binary name or path to execute |
-| `install` | no | `{ command, args }` — install command run during hub install |
-| `restart` | no | `never` (default), `on_failure`, or `always` |
-| `config` | no | Opaque JSON forwarded to the service via WHS |
+Supported sections: `mcps`, `skills`, `agents`, `commands`.
 
 ## Examples
 
 - [microsoft/playwright.toml](microsoft/playwright.toml) — MCP server and CLI skill for browser automation with Playwright.
-- [openwalrus/memory.toml](openwalrus/memory.toml) — Graph memory service with entity and relation tracking.
-- [openwalrus/search.toml](openwalrus/search.toml) — Meta-search aggregator (DuckDuckGo, Wikipedia).
-- [openwalrus/telegram.toml](openwalrus/telegram.toml) — Telegram bot gateway for agents.
-- [openwalrus/discord.toml](openwalrus/discord.toml) — Discord bot gateway for agents.
+- [notion/notion.toml](notion/notion.toml) — Notion MCP server for pages, databases, and blocks.
+- [vercel/agent-browser.toml](vercel/agent-browser.toml) — Browser automation CLI for AI agents.
+- [crabtalk/search.toml](crabtalk/search.toml) — Meta-search aggregator command.
+- [crabtalk/telegram.toml](crabtalk/telegram.toml) — Telegram bot gateway command.
 
 ## Add a Resource
 

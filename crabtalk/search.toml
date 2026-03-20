@@ -1,12 +1,11 @@
 [package]
 name = "search"
 description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
-logo = "https://openwalrus.xyz/logos/search.png"
-repository = "https://github.com/aspect-build/walrus"
+logo = "https://crabtalk.ai/logos/search.png"
+repository = "https://github.com/crabtalk/crabtalk"
 keywords = ["search", "web", "duckduckgo", "wikipedia"]
 
-[services.search]
+[commands.search]
 description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
-kind = "extension"
-crate = "walrus-search"
-restart = "on_failure"
+binary = "crabtalk-search"
+subcommand = "mcp"
