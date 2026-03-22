@@ -4,6 +4,7 @@ version = "0.0.1"
 authors = ["garrytan <garrytan@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/crabtalk/gstack"
+branch = "crabtalk"
 keywords = ["agent", "stack"]
 description = "garrytan's AI engineering workflow agent powered by crabtalk"
 
