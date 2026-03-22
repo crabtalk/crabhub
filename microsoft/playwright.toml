@@ -9,6 +9,6 @@ keywords = ["playwright", "browser", "automation", "mcp"]
 command = "npx"
 args = ["-y", "@playwright/mcp"]
 
-[skills.playwright-cli]
-description = "CLI for common Playwright actions. Record and generate Playwright code, inspect selectors and take screenshots."
-path = "skills/playwright-cli"
+[mcps.playwright.setup]
+run = "npx playwright install chromium"
+message = "Installing Chromium browser for Playwright"
