@@ -5,7 +5,6 @@ logo = "https://crabtalk.ai/logos/telegram.png"
 repository = "https://github.com/crabtalk/crabtalk"
 keywords = ["telegram", "bot", "gateway", "chat"]
 
-[commands.gateway-telegram]
+[commands.telegram]
 description = "Telegram bot gateway for agents"
-binary = "crabtalk-telegram"
-subcommand = "telegram"
+crate = "crabtalk-telegram"
