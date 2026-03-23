@@ -96,20 +96,18 @@ skills = ["playwright-cli"]
 
 #### `[commands.*]` — Commands
 
-Metadata for locally-installed command binaries. Hub registers them in `crab.toml` but does not download or manage the binary itself.
+Rust crate commands. Auto-installed via `cargo install` during `hub install`.
 
 ```toml
 [commands.search]
 description = "Meta-search aggregator (DuckDuckGo, Wikipedia)"
-binary = "crabtalk-search"
-subcommand = "mcp"
+crate = "crabtalk-search"
 ```
 
 | Field | Required | Description |
 |---|---|---|
 | `description` | yes | Human-readable description |
-| `binary` | yes | Executable name (resolved via PATH) or absolute path |
-| `subcommand` | yes | Clap subcommand for service management |
+| `crate` | yes | Crate name on crates.io (installed via `cargo install`) |
 
 Installed commands are managed via `crabtalk <command> start|stop|run|logs`.
 
@@ -120,6 +118,7 @@ Installed commands are managed via `crabtalk <command> start|stop|run|logs`.
 - [vercel/agent-browser.toml](vercel/agent-browser.toml) — Browser automation CLI for AI agents.
 - [crabtalk/search.toml](crabtalk/search.toml) — Meta-search aggregator command.
 - [crabtalk/telegram.toml](crabtalk/telegram.toml) — Telegram bot gateway command.
+- [crabtalk/wechat.toml](crabtalk/wechat.toml) — WeChat bot gateway command.
 
 ## Add a Resource
 

@@ -1,0 +1,9 @@
+[package]
+name = "wechat"
+description = "WeChat bot gateway for agents"
+repository = "https://github.com/crabtalk/crabtalk"
+keywords = ["wechat", "bot", "gateway", "chat"]
+
+[commands.wechat]
+description = "WeChat bot gateway for agents"
+crate = "crabtalk-wechat"
