@@ -2,6 +2,7 @@
 
 - [Overview](./overview.md)
 - [Manifest](./manifest.md)
+- [Publishing](./publishing.md)
 
 # Examples
 
