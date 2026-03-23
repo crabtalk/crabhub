@@ -1,0 +1,678 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Crabhub Specification</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-65931938.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-3c6d1313.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Crabhub Specification</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/crabtalk/crabhub" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
+<p>The Crabtalk Hub is a community registry for AI agent resources — MCP servers,
+skills, agents, and commands. Resources are indexed as TOML manifests in the
+<a href="https://github.com/crabtalk/hub">hub repository</a> and installed via the
+<code>crabtalk</code> CLI.</p>
+<h2 id="index-layout"><a class="header" href="#index-layout">Index Layout</a></h2>
+<p>Each manifest lives at <code>&lt;scope&gt;/&lt;name&gt;.toml</code>:</p>
+<pre><code>microsoft/playwright.toml
+notion/notion.toml
+crabtalk/search.toml
+</code></pre>
+<p><code>scope</code> is typically the author, organization, or tool namespace. A single
+<code>.toml</code> file can declare multiple related resources under the same package.</p>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<pre><code class="language-bash">crabtalk hub install scope/name
+</code></pre>
+<p>This:</p>
+<ol>
+<li>Fetches the manifest from the hub index.</li>
+<li>Clones the source repository (if <code>package.repository</code> is set) to
+<code>~/.crabtalk/.cache/repos/&lt;slug&gt;/</code>.</li>
+<li>Copies the manifest to <code>~/.crabtalk/packages/&lt;scope&gt;/&lt;name&gt;.toml</code>.</li>
+<li>Merges resource definitions (MCP servers, agents, commands) into the user’s
+<code>crab.toml</code>.</li>
+<li>Runs <code>[package.setup]</code> if present.</li>
+</ol>
+<h2 id="directory-conventions"><a class="header" href="#directory-conventions">Directory Conventions</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>~/.crabtalk/packages/</code></td><td>Installed package manifests</td></tr>
+<tr><td><code>~/.crabtalk/config/</code></td><td>Service configuration files (<code>.toml</code>)</td></tr>
+<tr><td><code>~/.crabtalk/.cache/repos/</code></td><td>Cached source repository clones</td></tr>
+<tr><td><code>~/.crabtalk/local/agents/</code></td><td>Agent prompt files (<code>.md</code>)</td></tr>
+<tr><td><code>~/.crabtalk/local/skills/</code></td><td>Installed skill directories (auto-loaded)</td></tr>
+<tr><td><code>~/.crabtalk/config.toml</code></td><td>Runtime configuration (MCP servers, agents, commands)</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="skill-discovery"><a class="header" href="#skill-discovery">Skill Discovery</a></h2>
+<p>Skills are auto-loaded — no manifest registration required. Crabtalk scans two
+locations for skill directories:</p>
+<ol>
+<li><strong>Local skills</strong> — <code>~/.crabtalk/local/skills/&lt;name&gt;/</code></li>
+<li><strong>Package skills</strong> — <code>~/.crabtalk/.cache/repos/&lt;slug&gt;/skills/&lt;name&gt;/</code></li>
+</ol>
+<p>Any directory containing a <code>SKILL.md</code> file is picked up automatically. Skills
+follow the <a href="https://agentskills.dev">agentskills</a> standard and are invoked via
+<code>/skill-name</code> in the REPL.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="manifest"><a class="header" href="#manifest">Manifest</a></h1>
+<p>Every hub package is a single TOML file with a required <code>[package]</code> section
+followed by one or more resource sections: <code>[mcps.*]</code>, <code>[agents.*]</code>, and
+<code>[commands.*]</code>.</p>
+<pre><code class="language-toml">[package]
+name = "my-package"
+description = "Short description"
+repository = "https://github.com/org/repo"
+
+[mcps.my-server]
+command = "npx"
+args = ["-y", "my-mcp-server"]
+</code></pre>
+<h2 id="package"><a class="header" href="#package"><code>[package]</code></a></h2>
+<p>Package metadata. The only required field is <code>name</code>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Required</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>yes</td><td>—</td><td>Package name</td></tr>
+<tr><td><code>description</code></td><td>no</td><td><code>""</code></td><td>Short description for hub display</td></tr>
+<tr><td><code>logo</code></td><td>no</td><td><code>""</code></td><td>Logo URL for hub display</td></tr>
+<tr><td><code>repository</code></td><td>no</td><td><code>""</code></td><td>Source repository URL (required for skills and agents)</td></tr>
+<tr><td><code>branch</code></td><td>no</td><td>repo default</td><td>Branch to clone</td></tr>
+<tr><td><code>version</code></td><td>no</td><td>—</td><td>Package version</td></tr>
+<tr><td><code>authors</code></td><td>no</td><td><code>[]</code></td><td>Package authors</td></tr>
+<tr><td><code>license</code></td><td>no</td><td>—</td><td>License identifier</td></tr>
+<tr><td><code>keywords</code></td><td>no</td><td><code>[]</code></td><td>Searchable tags for hub discovery</td></tr>
+<tr><td><code>setup</code></td><td>no</td><td>—</td><td>Post-install setup (see below)</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="packagesetup"><a class="header" href="#packagesetup"><code>[package.setup]</code></a></h3>
+<p>Run after installation. Two variants — use one or the other, not both.</p>
+<p><strong>Shell command</strong> — runs from the cached repo directory:</p>
+<pre><code class="language-toml">[package.setup]
+command = "npx playwright install chromium"
+</code></pre>
+<p><strong>Inference prompt</strong> — sent to the daemon. If the value ends with <code>.md</code>, it is
+read as a file path relative to the repo root:</p>
+<pre><code class="language-toml">[package.setup]
+prompt = "setup.md"
+</code></pre>
+<h2 id="mcps"><a class="header" href="#mcps"><code>[mcps.*]</code></a></h2>
+<p>Registers an MCP server. The map key becomes the server identifier.</p>
+<pre><code class="language-toml">[mcps.notion]
+command = "npx"
+args = ["-y", "@notionhq/notion-mcp-server"]
+env = { NOTION_TOKEN = "" }
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Required</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>command</code></td><td>yes*</td><td><code>""</code></td><td>Executable to spawn (stdio transport)</td></tr>
+<tr><td><code>args</code></td><td>no</td><td><code>[]</code></td><td>Command-line arguments</td></tr>
+<tr><td><code>env</code></td><td>no</td><td><code>{}</code></td><td>Environment variables</td></tr>
+<tr><td><code>name</code></td><td>no</td><td>map key</td><td>Display name</td></tr>
+<tr><td><code>auto_restart</code></td><td>no</td><td><code>true</code></td><td>Auto-restart on failure</td></tr>
+<tr><td><code>url</code></td><td>no</td><td>—</td><td>HTTP URL for streamable HTTP transport</td></tr>
+</tbody>
+</table>
+</div>
+<p>* Either <code>command</code> or <code>url</code> must be set. Use <code>command</code> for stdio transport,
+<code>url</code> for HTTP.</p>
+<h2 id="agents"><a class="header" href="#agents"><code>[agents.*]</code></a></h2>
+<p>Agent prompt bundles. Prompt files are discovered by convention from
+<code>agents/&lt;key&gt;.md</code> in the source repository, or specified explicitly via the
+<code>prompt</code> field.</p>
+<pre><code class="language-toml">[agents.garrytan]
+description = "AI engineering workflow agent"
+thinking = true
+skills = ["agent-browser"]
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Required</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>description</code></td><td>yes</td><td>—</td><td>Agent description</td></tr>
+<tr><td><code>prompt</code></td><td>no</td><td><code>""</code></td><td>Path to prompt <code>.md</code> file (relative to repo root)</td></tr>
+<tr><td><code>skills</code></td><td>no</td><td><code>[]</code></td><td>Skill names this agent can access</td></tr>
+<tr><td><code>model</code></td><td>no</td><td>—</td><td>Model override for this agent</td></tr>
+<tr><td><code>thinking</code></td><td>no</td><td><code>false</code></td><td>Enable thinking/reasoning mode</td></tr>
+<tr><td><code>mcps</code></td><td>no</td><td><code>[]</code></td><td>MCP server names this agent can access</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="commands"><a class="header" href="#commands"><code>[commands.*]</code></a></h2>
+<p>Rust crate commands. Auto-installed via <code>cargo install</code> during <code>hub install</code>.</p>
+<pre><code class="language-toml">[commands.search]
+description = "Meta-search aggregator"
+crate = "crabtalk-search"
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>description</code></td><td>yes</td><td>Human-readable description</td></tr>
+<tr><td><code>crate</code></td><td>yes</td><td>Crate name on crates.io (installed via <code>cargo install</code>)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Installed commands are managed via <code>crabtalk &lt;command&gt; start|stop|run|logs</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="publishing"><a class="header" href="#publishing">Publishing</a></h1>
+<p>How to develop and publish a package to the Crabtalk Hub.</p>
+<h2 id="1-write-a-manifest"><a class="header" href="#1-write-a-manifest">1. Write a manifest</a></h2>
+<p>Create a <code>&lt;name&gt;.toml</code> file following the <a href="#manifest">manifest format</a>.
+Start with the <code>[package]</code> section and add the resource sections you need.</p>
+<pre><code class="language-toml">[package]
+name = "my-package"
+description = "What it does"
+repository = "https://github.com/org/my-package"
+keywords = ["relevant", "tags"]
+
+[mcps.my-server]
+command = "npx"
+args = ["-y", "@scope/my-mcp-server"]
+</code></pre>
+<h2 id="2-test-locally"><a class="header" href="#2-test-locally">2. Test locally</a></h2>
+<p>Validate your manifest before publishing:</p>
+<pre><code class="language-bash">crabtalk hub test path/to/my-package.toml
+</code></pre>
+<p>This parses the manifest, checks that required fields are present, and verifies
+that the resources can be resolved.</p>
+<h2 id="3-submit-to-the-hub"><a class="header" href="#3-submit-to-the-hub">3. Submit to the hub</a></h2>
+<ol>
+<li>Fork the <a href="https://github.com/crabtalk/hub">hub repository</a>.</li>
+<li>Add your manifest at <code>&lt;scope&gt;/&lt;name&gt;.toml</code>. Use your organization name or
+username as the scope.</li>
+<li>Open a pull request.</li>
+</ol>
+<pre><code>my-org/my-package.toml
+</code></pre>
+<h2 id="checklist"><a class="header" href="#checklist">Checklist</a></h2>
+<p>Before submitting:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>package.name</code> is set</li>
+<li><input disabled="" type="checkbox"> <code>package.description</code> is clear and concise</li>
+<li><input disabled="" type="checkbox"> <code>package.repository</code> is set (required for agents and skills)</li>
+<li><input disabled="" type="checkbox"> <code>package.keywords</code> help users find your package</li>
+<li><input disabled="" type="checkbox"> <code>package.setup</code> works on a clean machine (if present)</li>
+<li><input disabled="" type="checkbox"> MCP servers start without errors</li>
+<li><input disabled="" type="checkbox"> Agent prompts exist at the expected paths in the source repo</li>
+<li><input disabled="" type="checkbox"> <code>crabtalk hub test</code> passes</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="writing-an-mcp-server-package"><a class="header" href="#writing-an-mcp-server-package">Writing an MCP Server Package</a></h1>
+<p>An MCP server package registers an external tool server that the daemon
+connects to at runtime. This is the most common package type — wrapping an
+existing MCP server for one-command installation.</p>
+<h2 id="minimal-manifest"><a class="header" href="#minimal-manifest">Minimal manifest</a></h2>
+<pre><code class="language-toml">[package]
+name = "my-server"
+description = "What the server does"
+keywords = ["relevant", "tags"]
+
+[mcps.my-server]
+command = "npx"
+args = ["-y", "@scope/my-mcp-server"]
+</code></pre>
+<p>That’s it. On <code>crabtalk hub install</code>, this config is merged into the user’s
+<code>config.toml</code> and the server starts automatically.</p>
+<h2 id="choosing-a-transport"><a class="header" href="#choosing-a-transport">Choosing a transport</a></h2>
+<p>MCP servers connect via <strong>stdio</strong> or <strong>HTTP</strong>. Use one or the other.</p>
+<p><strong>Stdio</strong> (most common) — the daemon spawns the process directly:</p>
+<pre><code class="language-toml">[mcps.my-server]
+command = "npx"
+args = ["-y", "@scope/my-mcp-server"]
+</code></pre>
+<p><strong>HTTP</strong> — the server runs independently and the daemon connects to it:</p>
+<pre><code class="language-toml">[mcps.my-server]
+url = "http://localhost:3000/mcp"
+</code></pre>
+<h2 id="environment-variables"><a class="header" href="#environment-variables">Environment variables</a></h2>
+<p>If the server needs API keys or configuration, declare them with empty defaults.
+The user fills them in after install:</p>
+<pre><code class="language-toml">[mcps.notion]
+command = "npx"
+args = ["-y", "@notionhq/notion-mcp-server"]
+env = { NOTION_TOKEN = "" }
+</code></pre>
+<h2 id="post-install-setup"><a class="header" href="#post-install-setup">Post-install setup</a></h2>
+<p>If the server needs a setup step (e.g., downloading browser binaries), add
+<code>[package.setup]</code>:</p>
+<pre><code class="language-toml">[package.setup]
+command = "npx playwright install chromium"
+</code></pre>
+<p>See the <a href="#playwright">Playwright</a> example for a complete manifest.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
+<p>MCP server with a post-install setup command.</p>
+<pre><code class="language-toml">[package]
+name = "playwright"
+description = "Browser automation with Playwright MCP server and CLI tools"
+logo = "https://crabtalk.ai/logos/playwright.png"
+repository = "https://github.com/microsoft/playwright-cli"
+keywords = ["playwright", "browser", "automation", "mcp"]
+
+[package.setup]
+command = "npx playwright install chromium"
+
+[mcps.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp"]
+</code></pre>
+<h2 id="whats-happening"><a class="header" href="#whats-happening">What’s happening</a></h2>
+<ul>
+<li><strong><code>[package]</code></strong> — Standard metadata. <code>repository</code> points to the source repo
+(used if the package also declares skills).</li>
+<li><strong><code>[package.setup]</code></strong> — After install, runs <code>npx playwright install chromium</code>
+to download the browser binary. This is the shell command variant of setup.</li>
+<li><strong><code>[mcps.playwright]</code></strong> — Registers an MCP server using stdio transport. On
+install, this config is merged into the user’s <code>crab.toml</code>. The server spawns
+via <code>npx -y @playwright/mcp</code>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="writing-an-agent-package"><a class="header" href="#writing-an-agent-package">Writing an Agent Package</a></h1>
+<p>An agent package bundles a system prompt, optional skills, and configuration
+into an installable unit. This is how you distribute a complete agent persona.</p>
+<h2 id="minimal-manifest-1"><a class="header" href="#minimal-manifest-1">Minimal manifest</a></h2>
+<pre><code class="language-toml">[package]
+name = "my-agent"
+description = "What the agent does"
+repository = "https://github.com/org/my-agent"
+keywords = ["agent"]
+
+[agents.my-agent]
+description = "One-line agent description"
+</code></pre>
+<p>The <code>repository</code> field is required — the installer clones it to find the
+prompt file and any bundled skills.</p>
+<h2 id="prompt-discovery"><a class="header" href="#prompt-discovery">Prompt discovery</a></h2>
+<p>Agent prompts are discovered by convention. For an agent key <code>my-agent</code>, the
+installer looks for <code>agents/my-agent.md</code> in the source repository and copies
+it to <code>~/.crabtalk/local/agents/my-agent.md</code>.</p>
+<p>You can also specify the path explicitly:</p>
+<pre><code class="language-toml">[agents.my-agent]
+description = "One-line agent description"
+prompt = "prompts/custom-path.md"
+</code></pre>
+<h2 id="bundling-skills"><a class="header" href="#bundling-skills">Bundling skills</a></h2>
+<p>If your repo includes skills under a <code>skills/</code> directory, they are
+auto-discovered at runtime. You can declare which skills the agent uses:</p>
+<pre><code class="language-toml">[agents.my-agent]
+description = "One-line agent description"
+skills = ["code-review", "deploy"]
+</code></pre>
+<h2 id="agent-options"><a class="header" href="#agent-options">Agent options</a></h2>
+<pre><code class="language-toml">[agents.my-agent]
+description = "One-line agent description"
+thinking = true          # enable reasoning mode
+model = "claude-sonnet"  # model override
+mcps = ["playwright"]    # MCP servers this agent can access
+</code></pre>
+<h2 id="cloning-a-specific-branch"><a class="header" href="#cloning-a-specific-branch">Cloning a specific branch</a></h2>
+<p>If the agent lives on a non-default branch:</p>
+<pre><code class="language-toml">[package]
+name = "my-agent"
+repository = "https://github.com/org/my-agent"
+branch = "crabtalk"
+</code></pre>
+<h2 id="interactive-setup"><a class="header" href="#interactive-setup">Interactive setup</a></h2>
+<p>For agents that need configuration (API keys, preferences), use a setup prompt
+instead of a shell command. The prompt is sent to the daemon for inference:</p>
+<pre><code class="language-toml">[package.setup]
+prompt = "setup.md"
+</code></pre>
+<p>See the <a href="#gstack">Gstack</a> example for a complete manifest.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="gstack"><a class="header" href="#gstack">Gstack</a></h1>
+<p>Agent package with an inference-based setup prompt.</p>
+<pre><code class="language-toml">[package]
+name = "gstack"
+version = "0.0.1"
+authors = ["garrytan &lt;garrytan@gmail.com&gt;"]
+license = "MIT"
+repository = "https://github.com/crabtalk/gstack"
+branch = "crabtalk"
+keywords = ["agent", "stack"]
+description = "garrytan's AI engineering workflow agent powered by crabtalk"
+
+[package.setup]
+prompt = "setup.md"
+
+[agents.garrytan]
+description = "AI engineering workflow agent — suggests the right skill at the right time"
+thinking = true
+</code></pre>
+<h2 id="whats-happening-1"><a class="header" href="#whats-happening-1">What’s happening</a></h2>
+<ul>
+<li><strong><code>[package]</code></strong> — Uses the optional <code>version</code>, <code>authors</code>, <code>license</code>, and
+<code>branch</code> fields. <code>branch = "crabtalk"</code> tells the installer to clone that
+specific branch instead of the repo default.</li>
+<li><strong><code>[package.setup]</code></strong> — The prompt variant. <code>setup.md</code> is read from the repo
+root and sent to the daemon for inference. This is useful for interactive
+setup that requires the agent’s help (e.g., configuring API keys).</li>
+<li><strong><code>[agents.garrytan]</code></strong> — Declares an agent with <code>thinking = true</code> for
+reasoning mode. The prompt file is discovered by convention at
+<code>agents/garrytan.md</code> in the source repo.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="writing-a-command-package"><a class="header" href="#writing-a-command-package">Writing a Command Package</a></h1>
+<p>A command package registers a Rust binary crate as a managed service. The hub
+installs the crate via <code>cargo install</code> and the daemon manages its lifecycle.</p>
+<h2 id="minimal-manifest-2"><a class="header" href="#minimal-manifest-2">Minimal manifest</a></h2>
+<pre><code class="language-toml">[package]
+name = "my-command"
+description = "What the command does"
+repository = "https://github.com/org/my-command"
+keywords = ["relevant", "tags"]
+
+[commands.my-command]
+description = "What the command does"
+crate = "crabtalk-my-command"
+</code></pre>
+<p>On <code>crabtalk hub install</code>, the crate is installed from crates.io via
+<code>cargo install crabtalk-my-command</code>.</p>
+<h2 id="naming-convention"><a class="header" href="#naming-convention">Naming convention</a></h2>
+<p>Command binaries follow the pattern <code>crabtalk-&lt;name&gt;</code>. This allows the CLI to
+dispatch <code>crabtalk &lt;name&gt;</code> to the correct binary — the same pattern Cargo uses
+for subcommands.</p>
+<h2 id="lifecycle-management"><a class="header" href="#lifecycle-management">Lifecycle management</a></h2>
+<p>Once installed, commands are managed via:</p>
+<pre><code class="language-bash">crabtalk &lt;name&gt; start   # start the service
+crabtalk &lt;name&gt; stop    # stop the service
+crabtalk &lt;name&gt; run     # run in foreground
+crabtalk &lt;name&gt; logs    # view service logs
+</code></pre>
+<h2 id="multiple-commands"><a class="header" href="#multiple-commands">Multiple commands</a></h2>
+<p>A single package can declare multiple commands if they ship from the same
+repository:</p>
+<pre><code class="language-toml">[commands.search]
+description = "Meta-search aggregator"
+crate = "crabtalk-search"
+
+[commands.telegram]
+description = "Telegram bot gateway"
+crate = "crabtalk-telegram"
+</code></pre>
+<p>See the <a href="#search">Search</a> and <a href="#wechat">WeChat</a> examples for complete
+manifests.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="search"><a class="header" href="#search">Search</a></h1>
+<p>Command service — registers a locally-installed binary as a managed command.</p>
+<pre><code class="language-toml">[package]
+name = "search"
+description = "Meta-search aggregator (Bing, Brave, DuckDuckGo, Mojeek, Wikipedia)"
+logo = "https://crabtalk.ai/logos/search.png"
+repository = "https://github.com/crabtalk/crabtalk"
+keywords = ["search", "web", "bing", "brave", "duckduckgo", "mojeek", "wikipedia"]
+
+[commands.search]
+description = "Meta-search aggregator (Bing, Brave, DuckDuckGo, Mojeek, Wikipedia)"
+crate = "crabtalk-search"
+</code></pre>
+<h2 id="whats-happening-2"><a class="header" href="#whats-happening-2">What’s happening</a></h2>
+<ul>
+<li><strong><code>[package]</code></strong> — Standard metadata. The <code>repository</code> is the main crabtalk
+monorepo since the search binary is built from it.</li>
+<li><strong><code>[commands.search]</code></strong> — The <code>crabtalk-search</code> crate is auto-installed via
+<code>cargo install</code> during <code>hub install</code>. Once installed, managed via
+<code>crabtalk search start|stop|run|logs</code>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="wechat"><a class="header" href="#wechat">WeChat</a></h1>
+<p>Command service — WeChat bot gateway for agents.</p>
+<pre><code class="language-toml">[package]
+name = "wechat"
+description = "WeChat bot gateway for agents"
+logo = "https://crabtalk.ai/logos/wechat.png"
+repository = "https://github.com/crabtalk/crabtalk"
+keywords = ["wechat", "bot", "gateway", "chat"]
+
+[commands.wechat]
+description = "WeChat bot gateway for agents"
+crate = "crabtalk-wechat"
+</code></pre>
+<h2 id="whats-happening-3"><a class="header" href="#whats-happening-3">What’s happening</a></h2>
+<ul>
+<li><strong><code>[package]</code></strong> — Standard metadata. The <code>repository</code> is the main crabtalk
+monorepo since the wechat binary is built from it.</li>
+<li><strong><code>[commands.wechat]</code></strong> — The <code>crabtalk-wechat</code> crate is auto-installed via
+<code>cargo install</code> during <code>hub install</code>. Once installed, managed via
+<code>crabtalk wechat start|stop|run|logs</code>.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
