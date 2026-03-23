@@ -1,7 +1,6 @@
 [package]
 name = "telegram"
 description = "Telegram bot gateway for agents"
-logo = "https://crabtalk.ai/logos/telegram.png"
 repository = "https://github.com/crabtalk/crabtalk"
 keywords = ["telegram", "bot", "gateway", "chat"]
 

@@ -1,7 +1,6 @@
 [package]
 name = "playwright"
 description = "Browser automation with Playwright MCP server and CLI tools"
-logo = "https://crabtalk.ai/logos/playwright.png"
 repository = "https://github.com/microsoft/playwright-cli"
 keywords = ["playwright", "browser", "automation", "mcp"]
 

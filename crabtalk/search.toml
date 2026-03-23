@@ -1,7 +1,6 @@
 [package]
 name = "search"
 description = "Meta-search aggregator (Bing, Brave, DuckDuckGo, Mojeek, Wikipedia)"
-logo = "https://crabtalk.ai/logos/search.png"
 repository = "https://github.com/crabtalk/crabtalk"
 keywords = [
     "search",

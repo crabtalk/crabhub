@@ -1,7 +1,6 @@
 [package]
 name = "notion"
 description = "Notion MCP server for pages, databases, and blocks"
-logo = "https://crabtalk.ai/logos/notion.png"
 repository = "https://github.com/notionhq/notion-mcp-server"
 keywords = ["notion", "mcp", "docs", "database", "wiki"]
 

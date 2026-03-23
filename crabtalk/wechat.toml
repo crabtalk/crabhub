@@ -1,7 +1,6 @@
 [package]
 name = "wechat"
 description = "WeChat bot gateway for agents"
-logo = "https://crabtalk.ai/logos/wechat.png"
 repository = "https://github.com/crabtalk/crabtalk"
 keywords = ["wechat", "bot", "gateway", "chat"]
 

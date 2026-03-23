@@ -1,6 +1,5 @@
 [package]
 name = "agent-browser"
 description = "Browser automation CLI for AI agents"
-logo = "https://crabtalk.ai/logos/agent-browser.png"
 repository = "https://github.com/vercel-labs/agent-browser"
 keywords = ["browser", "automation", "scraping", "agents"]
