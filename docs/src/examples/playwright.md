@@ -1,6 +1,6 @@
 # Playwright
 
-MCP server with a post-install setup command.
+MCP server with a post-install setup script.
 
 ```toml
 [package]
@@ -11,7 +11,7 @@ repository = "https://github.com/microsoft/playwright-cli"
 keywords = ["playwright", "browser", "automation", "mcp"]
 
 [package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 
 [mcps.playwright]
 command = "npx"
@@ -23,7 +23,7 @@ args = ["-y", "@playwright/mcp"]
 - **`[package]`** — Standard metadata. `repository` points to the source repo
   (used if the package also declares skills).
 - **`[package.setup]`** — After install, runs `npx playwright install chromium`
-  to download the browser binary. This is the shell command variant of setup.
+  via bash to download the browser binary. This is the script variant of setup.
 - **`[mcps.playwright]`** — Registers an MCP server using stdio transport. On
   install, this config is merged into the user's `crab.toml`. The server spawns
   via `npx -y @playwright/mcp`.

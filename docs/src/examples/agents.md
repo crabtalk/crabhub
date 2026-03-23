@@ -68,7 +68,7 @@ branch = "crabtalk"
 ## Interactive setup
 
 For agents that need configuration (API keys, preferences), use a setup prompt
-instead of a shell command. The prompt is sent to the daemon for inference:
+instead of a bash script. The prompt is sent to the daemon for inference:
 
 ```toml
 [package.setup]

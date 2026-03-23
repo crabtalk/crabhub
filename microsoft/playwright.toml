@@ -5,7 +5,7 @@ repository = "https://github.com/microsoft/playwright-cli"
 keywords = ["playwright", "browser", "automation", "mcp"]
 
 [package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 
 [mcps.playwright]
 command = "npx"
