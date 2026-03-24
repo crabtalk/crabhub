@@ -36,11 +36,23 @@ Package metadata. The only required field is `name`.
 
 Run after installation. Two variants — use one or the other, not both.
 
-**Shell command** — runs from the cached repo directory:
+**Bash script** — runs from the cached repo directory. If the value ends with
+`.sh`, it is executed as a script file (`bash setup.sh`). Otherwise it is passed
+as inline script (`bash -c '...'`):
 
 ```toml
 [package.setup]
-command = "npx playwright install chromium"
+script = "setup.sh"
+```
+
+Or inline:
+
+```toml
+[package.setup]
+script = '''
+npx playwright install chromium
+echo "done"
+'''
 ```
 
 **Inference prompt** — sent to the daemon. If the value ends with `.md`, it is

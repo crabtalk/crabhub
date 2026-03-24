@@ -3,3 +3,9 @@ name = "agent-browser"
 description = "Browser automation CLI for AI agents"
 repository = "https://github.com/vercel-labs/agent-browser"
 keywords = ["browser", "automation", "scraping", "agents"]
+
+[package.setup]
+script = '''
+npm install -g agent-browser
+agent-browser install
+'''

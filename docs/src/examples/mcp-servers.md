@@ -58,7 +58,7 @@ If the server needs a setup step (e.g., downloading browser binaries), add
 
 ```toml
 [package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 ```
 
 See the [Playwright](./playwright.md) example for a complete manifest.
