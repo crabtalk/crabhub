@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-65931938.js";
+            window.path_to_searchindex_js = "../searchindex-a132d818.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-3c6d1313.js"></script>
@@ -178,7 +178,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
-<p>MCP server with a post-install setup command.</p>
+<p>MCP server with a post-install setup script.</p>
 <pre><code class="language-toml">[package]
 name = "playwright"
 description = "Browser automation with Playwright MCP server and CLI tools"
@@ -187,7 +187,7 @@ repository = "https://github.com/microsoft/playwright-cli"
 keywords = ["playwright", "browser", "automation", "mcp"]
 
 [package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 
 [mcps.playwright]
 command = "npx"
@@ -198,7 +198,7 @@ args = ["-y", "@playwright/mcp"]
 <li><strong><code>[package]</code></strong> — Standard metadata. <code>repository</code> points to the source repo
 (used if the package also declares skills).</li>
 <li><strong><code>[package.setup]</code></strong> — After install, runs <code>npx playwright install chromium</code>
-to download the browser binary. This is the shell command variant of setup.</li>
+via bash to download the browser binary. This is the script variant of setup.</li>
 <li><strong><code>[mcps.playwright]</code></strong> — Registers an MCP server using stdio transport. On
 install, this config is merged into the user’s <code>crab.toml</code>. The server spawns
 via <code>npx -y @playwright/mcp</code>.</li>

@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-65931938.js";
+            window.path_to_searchindex_js = "searchindex-a132d818.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-3c6d1313.js"></script>
@@ -267,9 +267,18 @@ args = ["-y", "my-mcp-server"]
 </div>
 <h3 id="packagesetup"><a class="header" href="#packagesetup"><code>[package.setup]</code></a></h3>
 <p>Run after installation. Two variants — use one or the other, not both.</p>
-<p><strong>Shell command</strong> — runs from the cached repo directory:</p>
+<p><strong>Bash script</strong> — runs from the cached repo directory. If the value ends with
+<code>.sh</code>, it is executed as a script file (<code>bash setup.sh</code>). Otherwise it is passed
+as inline script (<code>bash -c '...'</code>):</p>
 <pre><code class="language-toml">[package.setup]
-command = "npx playwright install chromium"
+script = "setup.sh"
+</code></pre>
+<p>Or inline:</p>
+<pre><code class="language-toml">[package.setup]
+script = '''
+npx playwright install chromium
+echo "done"
+'''
 </code></pre>
 <p><strong>Inference prompt</strong> — sent to the daemon. If the value ends with <code>.md</code>, it is
 read as a file path relative to the repo root:</p>
@@ -425,12 +434,12 @@ env = { NOTION_TOKEN = "" }
 <p>If the server needs a setup step (e.g., downloading browser binaries), add
 <code>[package.setup]</code>:</p>
 <pre><code class="language-toml">[package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 </code></pre>
 <p>See the <a href="#playwright">Playwright</a> example for a complete manifest.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
-<p>MCP server with a post-install setup command.</p>
+<p>MCP server with a post-install setup script.</p>
 <pre><code class="language-toml">[package]
 name = "playwright"
 description = "Browser automation with Playwright MCP server and CLI tools"
@@ -439,7 +448,7 @@ repository = "https://github.com/microsoft/playwright-cli"
 keywords = ["playwright", "browser", "automation", "mcp"]
 
 [package.setup]
-command = "npx playwright install chromium"
+script = "npx playwright install chromium"
 
 [mcps.playwright]
 command = "npx"
@@ -450,7 +459,7 @@ args = ["-y", "@playwright/mcp"]
 <li><strong><code>[package]</code></strong> — Standard metadata. <code>repository</code> points to the source repo
 (used if the package also declares skills).</li>
 <li><strong><code>[package.setup]</code></strong> — After install, runs <code>npx playwright install chromium</code>
-to download the browser binary. This is the shell command variant of setup.</li>
+via bash to download the browser binary. This is the script variant of setup.</li>
 <li><strong><code>[mcps.playwright]</code></strong> — Registers an MCP server using stdio transport. On
 install, this config is merged into the user’s <code>crab.toml</code>. The server spawns
 via <code>npx -y @playwright/mcp</code>.</li>
@@ -503,7 +512,7 @@ branch = "crabtalk"
 </code></pre>
 <h2 id="interactive-setup"><a class="header" href="#interactive-setup">Interactive setup</a></h2>
 <p>For agents that need configuration (API keys, preferences), use a setup prompt
-instead of a shell command. The prompt is sent to the daemon for inference:</p>
+instead of a bash script. The prompt is sent to the daemon for inference:</p>
 <pre><code class="language-toml">[package.setup]
 prompt = "setup.md"
 </code></pre>

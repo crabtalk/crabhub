@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-65931938.js";
+            window.path_to_searchindex_js = "searchindex-a132d818.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-3c6d1313.js"></script>
@@ -213,9 +213,18 @@ args = ["-y", "my-mcp-server"]
 </div>
 <h3 id="packagesetup"><a class="header" href="#packagesetup"><code>[package.setup]</code></a></h3>
 <p>Run after installation. Two variants — use one or the other, not both.</p>
-<p><strong>Shell command</strong> — runs from the cached repo directory:</p>
+<p><strong>Bash script</strong> — runs from the cached repo directory. If the value ends with
+<code>.sh</code>, it is executed as a script file (<code>bash setup.sh</code>). Otherwise it is passed
+as inline script (<code>bash -c '...'</code>):</p>
 <pre><code class="language-toml">[package.setup]
-command = "npx playwright install chromium"
+script = "setup.sh"
+</code></pre>
+<p>Or inline:</p>
+<pre><code class="language-toml">[package.setup]
+script = '''
+npx playwright install chromium
+echo "done"
+'''
 </code></pre>
 <p><strong>Inference prompt</strong> — sent to the daemon. If the value ends with <code>.md</code>, it is
 read as a file path relative to the repo root:</p>
