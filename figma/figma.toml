@@ -6,3 +6,4 @@ repository = "https://github.com/figma/mcp-server-guide"
 
 [mcps.figma]
 url = "https://mcp.figma.com/mcp"
+auth = true
