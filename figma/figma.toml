@@ -1,0 +1,9 @@
+[package]
+name = "figma"
+description = "Figma MCP server for reading designs, creating diagrams, and managing Code Connect"
+keywords = ["figma", "mcp", "design", "ui"]
+repository = "https://github.com/figma/mcp-server-guide"
+
+[mcps.figma]
+url = "https://mcp.figma.com/mcp"
+auth = true

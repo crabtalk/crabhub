@@ -5,4 +5,4 @@ keywords = ["agent", "stack"]
 description = "garrytan's AI engineering workflow agent powered by crabtalk"
 
 [package.setup]
-prompt = "setup"
+script = "setup"

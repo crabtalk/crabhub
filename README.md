@@ -58,24 +58,11 @@ env = { NOTION_TOKEN = "" }
 | `name` | no | map key | Display name |
 | `auto_restart` | no | `true` | Auto-restart on failure |
 | `url` | no | — | HTTP URL for streamable HTTP transport (replaces stdio) |
+| `auth` | no | `false` | Whether this server requires OAuth authentication |
 
 *Either `command` or `url` should be set.
 
-#### `[skills.*]` — Skills
-
-Downloadable skill directories, copied from `package.repository` to `~/.crabtalk/skills/<key>/` on install.
-
-```toml
-[skills.playwright-cli]
-description = "CLI for common Playwright actions."
-path = "skills/playwright-cli"
-```
-
-| Field | Required | Description |
-|---|---|---|
-| `description` | yes | Skill description |
-| `path` | yes | Path within the source repo to the skill directory |
-| `name` | no | Display name (defaults to map key) |
+Skills are discovered automatically from the cloned repository by scanning for `SKILL.md` files — no manifest section needed.
 
 #### `[agents.*]` — Agents
 
