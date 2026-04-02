@@ -1,8 +1,0 @@
-[package]
-name = "gstack"
-repository = "https://github.com/garrytan/gstack"
-keywords = ["agent", "stack"]
-description = "garrytan's AI engineering workflow agent powered by crabtalk"
-
-[package.setup]
-script = "setup"

@@ -1,9 +1,0 @@
-[package]
-name = "dev-mcp"
-description = "Shopify Dev MCP server for docs search, API schema exploration, and theme validation"
-repository = "https://github.com/Shopify/dev-mcp"
-keywords = ["shopify", "mcp", "ecommerce", "api", "graphql"]
-
-[mcps.shopify-dev-mcp]
-command = "npx"
-args = ["-y", "@shopify/dev-mcp@latest"]

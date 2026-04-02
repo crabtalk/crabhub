@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/clearloop/code/crabtalk -maxdepth 3 -type f \\\\\\(-name *.hbs -o -name robots.txt -o -name sitemap* \\\\\\))",
+      "Bash(git:*)",
+      "WebSearch"
+    ]
+  }
+}
